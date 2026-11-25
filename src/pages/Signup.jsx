@@ -7,6 +7,7 @@ function Signup() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [role, setRole] = useState("user");
 
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
@@ -35,12 +36,12 @@ function Signup() {
       return;
     }
 
-    // Create new user
+    // Create new user with selected role
     const newUser = {
       name: name,
       email: email,
       password: password,
-      role: "user"
+      role: role
     };
 
     // Add user
@@ -52,7 +53,11 @@ function Signup() {
       JSON.stringify(users)
     );
 
-    setMessage("Account created successfully!");
+    setMessage(
+      `Account created successfully as ${
+        role === "admin" ? "Admin" : "Patient"
+      }!`
+    );
 
     // Go to login page
     setTimeout(() => {
@@ -68,7 +73,7 @@ function Signup() {
         <h1>Create Account</h1>
 
         <p className="subtitle">
-          Register as a patient
+          Register as {role === "admin" ? "an admin" : "a patient"}
         </p>
 
         {/* Name */}
@@ -100,6 +105,17 @@ function Signup() {
             setPassword(e.target.value)
           }
         />
+
+        {/* Role Selection */}
+        <select
+          value={role}
+          onChange={(e) =>
+            setRole(e.target.value)
+          }
+        >
+          <option value="user">Patient / User</option>
+          <option value="admin">Admin</option>
+        </select>
 
         {/* Signup Button */}
         <button
