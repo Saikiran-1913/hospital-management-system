@@ -1,4 +1,4 @@
-import { HashRouter as Router } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
@@ -10,7 +10,7 @@ import Billing from "./pages/Billing";
 
 function App() {
   return (
-    <BrowserRouter>
+    <Router>
       <Routes>
 
         <Route path="/" element={<Login />} />
@@ -45,7 +45,7 @@ function App() {
         />
 
       </Routes>
-    </BrowserRouter>
+    </Router>
   );
 }
 
