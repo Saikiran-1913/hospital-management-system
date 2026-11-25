@@ -53,7 +53,6 @@ function UserDashboard() {
     return SAMPLE_APPOINTMENTS;
   });
 
-  // Add Family Member form state
   const [showAddForm, setShowAddForm] = useState(false);
   const [newName, setNewName] = useState("");
   const [newRelation, setNewRelation] = useState("Mother");
@@ -62,11 +61,9 @@ function UserDashboard() {
   const [newAllergy, setNewAllergy] = useState("");
   const [newHistory, setNewHistory] = useState("");
 
-  // Quick add allergy/history note
   const [quickAllergy, setQuickAllergy] = useState("");
   const [quickHistory, setQuickHistory] = useState("");
 
-  // Sync whenever top Navbar switches family member
   useEffect(() => {
     const handleSync = () => {
       setFamilyMembers(
@@ -177,27 +174,35 @@ function UserDashboard() {
         <Sidebar role="user" />
 
         <main className="main-content container-fluid py-4 px-3 px-md-4">
-          {/* Header Section */}
-          <div className="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-4 gap-2">
-            <div>
-              <h1 className="mb-1">
-                {activeMember.name}'s Health Profile{" "}
-                <span className="badge bg-secondary fs-6 align-middle">
-                  {activeMember.relation}
+          {/* Hospital Hero Welcome Banner with Stethoscope Watermark */}
+          <div className="dashboard-hero-banner mb-4">
+            <div className="hero-watermark">🩺</div>
+            <div className="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 position-relative">
+              <div>
+                <span className="badge bg-light text-dark mb-2 px-3 py-1">
+                  🏥 Family Caregiver Portal
                 </span>
-              </h1>
-              <p className="welcome mb-0">
-                Caregiver Account: <strong>{userEmail}</strong> • Use the top bar to switch family members anytime.
-              </p>
-            </div>
+                <h1 className="h3 fw-bold text-white mb-1">
+                  {activeMember.name}'s Health Profile{" "}
+                  <span className="badge bg-warning text-dark fs-6 align-middle ms-1">
+                    {activeMember.relation}
+                  </span>
+                </h1>
+                <p className="text-white-50 small mb-0">
+                  Caregiver Account:{" "}
+                  <strong className="text-white">{userEmail}</strong> • Switch
+                  family members anytime from the top bar.
+                </p>
+              </div>
 
-            <button
-              type="button"
-              className="btn btn-primary align-self-start align-self-md-center"
-              onClick={() => setShowAddForm(!showAddForm)}
-            >
-              {showAddForm ? "✕ Close Form" : "+ Add Family Member"}
-            </button>
+              <button
+                type="button"
+                className="btn btn-light fw-semibold align-self-start align-self-md-center"
+                onClick={() => setShowAddForm(!showAddForm)}
+              >
+                {showAddForm ? "✕ Close Form" : "+ Add Family Member"}
+              </button>
+            </div>
           </div>
 
           {/* Collapsible Add Family Member Form */}
@@ -310,7 +315,10 @@ function UserDashboard() {
                   </span>
                 </div>
                 <p className="text-muted small mb-3">
-                  Patient: <strong>{activeMember.name}</strong> ({activeMember.age} yrs, Blood: <strong>{activeMember.bloodGroup}</strong>) — automatically shared with doctors upon booking.
+                  Patient: <strong>{activeMember.name}</strong> (
+                  {activeMember.age} yrs, Blood:{" "}
+                  <strong>{activeMember.bloodGroup}</strong>) — automatically
+                  shared with doctors upon booking.
                 </p>
 
                 <div className="d-flex flex-wrap gap-2 mb-3">
@@ -410,7 +418,9 @@ function UserDashboard() {
               <div className="card h-100 p-3 shadow-sm border-0">
                 <div className="d-flex justify-content-between align-items-center mb-2">
                   <h3 className="h5 mb-0">Vitals & Blood Group</h3>
-                  <span className="badge bg-primary">{activeMember.age} Yrs</span>
+                  <span className="badge bg-primary">
+                    {activeMember.age} Yrs
+                  </span>
                 </div>
                 <p className="fs-5 fw-bold mb-0">
                   Blood Type: {activeMember.bloodGroup}

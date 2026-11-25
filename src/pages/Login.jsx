@@ -12,7 +12,7 @@ function Login() {
   const handleLogin = () => {
     setMessage("");
 
-    // 1. Built-in Demo Admin Account (works on any browser/laptop)
+    // 1. Built-in Demo Admin Account
     if (
       role === "admin" &&
       email === "admin@hopecare.com" &&
@@ -24,7 +24,7 @@ function Login() {
       return;
     }
 
-    // 2. Built-in Demo Patient Account (works on any browser/laptop)
+    // 2. Built-in Demo Patient Account
     if (
       role === "user" &&
       email === "patient@hopecare.com" &&
@@ -55,7 +55,6 @@ function Login() {
     }
   };
 
-  // Helper to auto-fill demo accounts with 1 click during your review/hackathon
   const fillDemo = (demoRole) => {
     setMessage("");
     setRole(demoRole);
@@ -71,14 +70,53 @@ function Login() {
   return (
     <div className="login-page">
       <div className="login-container">
-        <div className="login-info">
+        {/* Left Teal Brand Panel with Stethoscope Watermark & Feature Highlights */}
+        <div className="login-info position-relative overflow-hidden">
+          {/* Faint Stethoscope / Medical Cross Watermark */}
+          <div
+            className="position-absolute"
+            style={{
+              right: "-15px",
+              bottom: "-25px",
+              fontSize: "11rem",
+              opacity: 0.08,
+              pointerEvents: "none",
+              userSelect: "none",
+            }}
+          >
+            🩺
+          </div>
+
+          <div className="mb-3">
+            <span className="badge bg-light text-dark px-3 py-2 fw-semibold">
+              🏥 24/7 Smart Care Portal
+            </span>
+          </div>
+
           <h1>HopeCare Hospital</h1>
-          <p>Hospital Management System</p>
-          <p>
-            Manage healthcare services easily and efficiently.
+          <p className="fw-medium mb-3">Hospital Management System</p>
+          <p className="small opacity-75 mb-4">
+            Manage appointments, family profiles, and clinical allergy alerts
+            safely from one unified dashboard.
           </p>
+
+          <div className="d-flex flex-column gap-2 small mt-auto">
+            <div className="d-flex align-items-center gap-2">
+              <span>👨‍👩‍👧‍👦</span>
+              <span>One Login for Entire Family</span>
+            </div>
+            <div className="d-flex align-items-center gap-2">
+              <span>🚨</span>
+              <span>Real-Time Doctor Allergy Guardrails</span>
+            </div>
+            <div className="d-flex align-items-center gap-2">
+              <span>🩺</span>
+              <span>Instant Specialist Booking & Billing</span>
+            </div>
+          </div>
         </div>
 
+        {/* Right Login Form */}
         <div className="login-box">
           <h2>Welcome Back</h2>
           <p className="subtitle">Login to your account</p>
@@ -114,7 +152,6 @@ function Login() {
 
           {message && <p className="error">{message}</p>}
 
-          {/* One-Click Demo Login Helper for Review & Hackathon */}
           <div className="mt-3 p-2 rounded bg-light border text-dark small">
             <div className="fw-bold mb-1">Quick Demo Accounts:</div>
             <div className="d-flex gap-2">

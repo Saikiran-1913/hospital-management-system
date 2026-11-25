@@ -5,22 +5,33 @@ import Sidebar from "../components/Sidebar";
 const DEFAULT_ADMIN_APPOINTMENTS = [
   {
     id: "demo-1",
-    patient: "Lakshmi",
+    patient: "Lakshmi Devi",
     relation: "Mother",
     doctor: "Dr. Priya Sharma",
     date: "2026-11-28",
-    reason: "Diabetes Follow-up",
+    reason: "Diabetes & Thyroid Follow-up",
     allergies: ["Penicillin", "Dust Mites"],
     history: ["Type 2 Diabetes (Managed)"],
     status: "Confirmed",
   },
   {
     id: "demo-2",
+    patient: "Suresh Babu",
+    relation: "Father",
+    doctor: "Dr. Raj Kumar",
+    date: "2026-11-30",
+    reason: "Blood Pressure & ECG Review",
+    allergies: ["Aspirin / Blood Thinners", "Sulfa Drugs"],
+    history: ["Mild Hypertension"],
+    status: "Confirmed",
+  },
+  {
+    id: "demo-3",
     patient: "Rahul",
     relation: "Self",
-    doctor: "Dr. Raj Kumar",
-    date: "2026-11-29",
-    reason: "Routine Cardiac Check",
+    doctor: "Dr. Ramesh Rao",
+    date: "2026-12-01",
+    reason: "Routine Neurology Check",
     allergies: [],
     history: ["No prior conditions"],
     status: "Pending",
@@ -57,18 +68,28 @@ function AdminDashboard() {
         <Sidebar role="admin" />
 
         <main className="main-content container-fluid py-4 px-3 px-md-4">
-          <div className="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-4">
-            <div>
-              <h1 className="mb-1">Doctor & Admin Clinical Board</h1>
-              <p className="welcome mb-0">
-                Live patient queue with automatic allergy & medical history flags.
-              </p>
+          {/* Doctor & Admin Clinical Hero Banner */}
+          <div className="admin-hero-banner mb-4">
+            <div className="hero-watermark">🩺</div>
+            <div className="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 position-relative">
+              <div>
+                <span className="badge bg-info text-dark mb-2 px-3 py-1">
+                  🩺 Clinical Command Center
+                </span>
+                <h1 className="h3 fw-bold text-white mb-1">
+                  Doctor & Admin Clinical Board
+                </h1>
+                <p className="text-white-50 small mb-0">
+                  Live patient queue with automatic allergy & medical history
+                  safety flags.
+                </p>
+              </div>
+              {allergyAlertCount > 0 && (
+                <span className="badge bg-danger fs-6 px-3 py-2 align-self-start align-self-md-center">
+                  🚨 {allergyAlertCount} Active Allergy Alert(s)
+                </span>
+              )}
             </div>
-            {allergyAlertCount > 0 && (
-              <span className="badge bg-danger fs-6 mt-2 mt-md-0 px-3 py-2">
-                🚨 {allergyAlertCount} Active Allergy Alert(s)
-              </span>
-            )}
           </div>
 
           {/* Summary Stat Cards */}
